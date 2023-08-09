@@ -1,0 +1,164 @@
+﻿<Page x:Class="Project.BDpage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project"
+      mc:Ignorable="d" 
+      d:DesignHeight="460" d:DesignWidth="800"
+      Title="BDpage">
+
+
+    <Grid Background="#FFB7C1C3">
+        <Rectangle HorizontalAlignment="Center" Height="62" Margin="0,14,0,0" VerticalAlignment="Top" Width="760" Fill="#FFD8E8E7" RenderTransformOrigin="0.5,0.5" RadiusX="9" RadiusY="9">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label Content="База данных" HorizontalAlignment="Center" Height="38" Margin="0,26,0,0" VerticalAlignment="Top" Width="170" FontFamily="Trebuchet MS" FontSize="26" FontWeight="Bold" Foreground="#FF3B3F53" RenderTransformOrigin="0.5,0.5" Background="{x:Null}"/>
+        <Button x:Name="Back1" Click="Backbt_Click" HorizontalAlignment="Left" Height="34" Margin="690,28,0,0" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF3B3F53" FontFamily="Trebuchet MS" FontWeight="Bold">
+            <Image Source="PreviousBT.png"/>
+            <Button.ToolTip>
+                <ToolTip>
+                    На главную
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+        <Grid>
+            <TabControl Margin="0,80,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF7B8F91" Foreground="#FF5F4C4C">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#FF49535F" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="#FF626E7D" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem Header="Люди" BorderBrush="{x:Null}" Foreground="White" FontFamily="Trebuchet MS" FontSize="16" FontWeight="Bold" Margin="0,1,0,0">
+                    <Grid Background="#D8E8E7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView x:Name ="TablePeople" HorizontalContentAlignment="Center" Background="#FFEDF4F6" BorderBrush="{x:Null}" Foreground="#FF35363A" FontWeight="Normal" FontSize="14">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_человека}" 
+                      Header="Код" Width="33"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Фамилия}" 
+                      Header="Фамилия" Width="100"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Имя}" 
+                      Header="Имя" Width="100"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Отчество}" 
+                      Header="Отчество" Width="100"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Дата_рождения, StringFormat=dd.MM.yyyy}" 
+                      Header="Дата рождения" Width="110"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Пол}" 
+                      Header="Пол" Width="50"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Место_проживания}" 
+                      Header="Место проживания" Width="130"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Адрес}" 
+                      Header="Адрес" Width="160"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=образование}" 
+                      Header="Образование" Width="100"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=E-mail}" 
+                      Header="E-mail" Width="140"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Телефон}" 
+                      Header="Мобильный телефон" Width="170"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Сотрудники" FontFamily="Trebuchet MS" FontSize="16" FontWeight="Bold" Foreground="White">
+                    <Grid Background="#FFE5E5E5">
+                        <ListView x:Name ="TableEmployee" HorizontalContentAlignment="Center" Background="#FFEDF4F6" BorderBrush="{x:Null}" Foreground="#FF35363A" FontWeight="Normal" FontSize="14">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_сотрудника}" 
+                      Header="Код сотрудника" Width="110"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_организации}" 
+                      Header="Код организации" Width="115"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_человека}" 
+                      Header="Код человека" Width="110"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Должность}" 
+                      Header="Должность" Width="130"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Ежемесячная_заработная_плата}" 
+                      Header="Ежемесячная заработная плата" Width="230"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Дата_начала_работы, StringFormat=dd.MM.yyyy}" 
+                      Header="Дата начала работы" Width="150"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                <TabItem HorizontalAlignment="Center" Height="28" Header="Организация" VerticalAlignment="Center" Width="126" Foreground="White" FontFamily="Trebuchet MS" FontSize="16" FontWeight="Bold">
+                    <Grid Background="#FFE5E5E5">
+                        <ListView x:Name ="TableOrg" HorizontalContentAlignment="Center" Background="#FFEDF4F6" BorderBrush="{x:Null}" Foreground="#FF35363A" FontWeight="Normal">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_организации}" 
+                      Header="Код организации" Width="115"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Название_организации}" 
+                      Header="Название" Width="110"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Род_деятельности}" 
+                      Header="Род деятельности" Width="160"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Дата_создания, StringFormat=dd.MM.yyyy}" 
+                      Header="Дата создания" Width="150"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Button x:Name="Load" HorizontalAlignment="Left" Height="35" Margin="29,28,0,0" 
+                VerticalAlignment="Top" Width="85" Click="Load_Click" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Trebuchet MS" Foreground="#FF3B3F6C" FontWeight="Bold" RenderTransformOrigin="0.391,0.429">
+                <Image Source="DownloadBT.png" Width="84"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Загрузка БД
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button x:Name="FillIn" HorizontalAlignment="Left" Height="35" Margin="119,28,0,0" 
+                VerticalAlignment="Top" Width="85" Click="FillIn_Click" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Trebuchet MS" Foreground="#FF3B3F6C" FontWeight="Bold" RenderTransformOrigin="0.391,0.429">
+                <Image Source="Pen_butt.png" Width="84"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Редактирование БД
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Click="Spravka_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="207,25,542,387" >
+                <Image Source="SpravkaBDbt.png" Height="38" Width="42"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Справка
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
